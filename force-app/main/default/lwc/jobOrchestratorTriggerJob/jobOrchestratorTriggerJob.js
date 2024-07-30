@@ -5,7 +5,7 @@ import callUIJobMessageChannel from "@salesforce/messageChannel/Call_UIJob__c";
 import { FlowNavigationFinishEvent } from 'lightning/flowSupport';
 import CONFIRMATION_MESSAGE from '@salesforce/label/c.LWCJobOrchestrator_Confirmation_Message';
 import SUCCESS_MESSAGE from '@salesforce/label/c.LWCJobOrchestrator_Success_Message';
-export default class lwcJobOrchestratorTriggerJob extends LightningElement {
+export default class jobOrchestratorTriggerJob extends LightningElement {
     @api recordId;
     @api metaDataName;
     @api someParam;
