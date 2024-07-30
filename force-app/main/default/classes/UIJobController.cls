@@ -142,7 +142,11 @@ public with sharing class UIJobController {
     public static UI_Job_Configuration__mdt getJobConfig(String metaDataNameStr)
     {
         metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
-
+        if(String.isBlank(metaDataNameStr))
+        {
+            raiseError('MetaData Name is required.');
+        }
+        //Get UI Job Configuration
         List<UI_Job_Configuration__mdt> listOfJobConf = [SELECT  Id,Label,DeveloperName ,ClassNames__c,
         Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
         (SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,Parellel_Job__c 
@@ -169,7 +173,11 @@ public with sharing class UIJobController {
     **/
     public static Map<Id,List<UI_Task_Configuration__mdt>> getSubTaskMap(String metaDataNameStr)
     {
-        
+        metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
+        if(String.isBlank(metaDataNameStr))
+        {
+            raiseError('MetaData Name is required.');
+        }
         Map<Id,List<UI_Task_Configuration__mdt>> subTaskMap = new Map<Id,List<UI_Task_Configuration__mdt>>();
         set<Id>  pallelJobIdList= new set<Id>();
         for(UI_Task_Configuration__mdt subjob : [SELECT  Parellel_Job__c,Label 
@@ -204,6 +212,11 @@ public with sharing class UIJobController {
     **/    
     public static UI_Task_Configuration__mdt getTaskConfig(String taskId)
     {
+        taskId = String.escapeSingleQuotes(taskId);
+        if(String.isBlank(taskId))
+        {
+            raiseError('taskId is required.');
+        }
         List<UI_Task_Configuration__mdt> listOfTaskConf = [SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,
         Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
         UI_Job__r.ClassNames__c,UI_Job__r.Parameter_String_1__c,UI_Job__r.Parameter_String_2__c,UI_Job__r.Parameter_String_3__c        
@@ -315,7 +328,13 @@ public with sharing class UIJobController {
         taskId = String.escapeSingleQuotes(taskId);
         recordIdStr = String.escapeSingleQuotes(recordIdStr);
         jobId = String.escapeSingleQuotes(jobId);
-        List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob WHERE Id=:jobID with SYSTEM_MODE];
+        if(String.isEmpty(JobId))
+        {
+
+            raiseError('JobId is required.');
+        }
+
+        List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob WHERE Id=:jobId with SYSTEM_MODE];
         if(!jobInfoList.isEmpty())
         {
             jobInfo = jobInfoList[0];
