@@ -6,7 +6,7 @@
     },
     {
       "versionName": "ver 0.1",
-      "versionNumber": "0.4.0.0",
+      "versionNumber": "0.6.1.0",
       "path": "./force-app/main/default",
       "default": false,
       "package": "LWC UI Orchestrator",
@@ -26,6 +26,9 @@
     "LWC UI Orchestrator@0.1.0-master": "04tam000000ihqrAAA",
     "LWC UI Orchestrator@0.2.0-master": "04tam000000ihsTAAQ",
     "LWC UI Orchestrator@0.3.0-master": "04tam000000ik7BAAQ",
-    "LWC UI Orchestrator@0.4.0-master": "04tam000000ikyPAAQ"
+    "LWC UI Orchestrator@0.4.0-master": "04tam000000ikyPAAQ",
+    "LWC UI Orchestrator@0.5.0-master": "04tam000000ilo1AAA",
+    "LWC UI Orchestrator@0.6.0-master": "04tam000000imLtAAI",
+    "LWC UI Orchestrator@0.6.1-master": "04tam000000imiTAAQ"
   }
 }

@@ -9,7 +9,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;strong&gt;LWC UI Orchestration&lt;/strong&gt;&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;LWC UI Orchestration&lt;/strong&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText2</identifier>
@@ -23,7 +23,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;Are you and your business users tired of triggering complex back end calculations from Salesforce that have poor updates on the job status and their failures? Sometimes users do not even get a notification that job has been completed, and it is really frustrating!&lt;/p&gt;&lt;p&gt;Sometimes we do not have any other option but to move complex logics asynchronously and run them using Queueables or Batches. And by doing that we submit these transactions to the Salesforce &quot;black box&quot; which is good because it simplifies many things, but the visibility for end users is limited, and this can make end users angry because they will probably just receive an in-app notification saying that &quot;something failed&quot; but struggle to add details on what failed ...&amp;nbsp;&lt;/p&gt;&lt;p&gt;Also, by doing that we start consuming asynchronous transactions, and we all now there is a daily limit we should not reach.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;What if we tell you that you can solve these 2 issues within an on-platform solution ?&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This solution is called LWC UI ORCHESTRATOR ! LWC UI Orchestrator is a simple Framework that allows you to orchestrate apex jobs from a LWC in the user screen. It is so powerful! It can run parallel transactions, simple transaction, chainable transactions, ... without consuming any single asynchronous transaction! And since the apex transactions are triggered from LWC, we can get synchronous responses from the apex jobs right in the LWC (without any need to leverage expensive Platform Events Subscriptions) and keep updating the user in real time on each step the process currently is.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This framework is capable of solving very complex problems that need to split the logic into small chunks, and provide great user experience. User does not need to wait to receive in-appl notifications or emails that might not be sent because of who knows why! The UI will be updated in real time.&lt;/p&gt;</value>
+                    <value>&lt;p&gt;Are you and your business users tired of triggering complex back end calculations from Salesforce that have poor updates on the job status and their failures? Sometimes users do not even get a notification that job has been completed, and it is really frustrating!&lt;/p&gt;&lt;p&gt;Sometimes we do not have any other option but to move complex logics asynchronously and run them using Queueables or Batches. And by doing that we submit these transactions to the Salesforce &quot;black box&quot; which is good because it simplifies many things, but the visibility for end users is limited, and this can make end users angry because they will probably just receive an in-app notification saying that &quot;something failed&quot; but struggle to add details on what failed ...&amp;nbsp;&lt;/p&gt;&lt;p&gt;Also, by doing that we start consuming asynchronous transactions, and we all now there is a daily limit we should not reach.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;What if we tell you that you can solve these 2 issues within an on-platform solution ?&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This solution is called LWC UI ORCHESTRATOR ! LWC UI Orchestrator is a simple Framework that allows you to orchestrate apex jobs from a LWC in the user screen. It is so powerful! It can run parallel transactions, simple transaction, chainable transactions, ... without consuming any single asynchronous transaction! And since the apex transactions are triggered from LWC, we can get synchronous responses from the apex jobs right in the LWC (without any need to leverage expensive Platform Events Subscriptions) and keep updating the user in real time on each step the process currently is.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can find a great video here: &lt;a href=&quot;https://youtu.be/e8YFVxblDK4&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;https://youtu.be/e8YFVxblDK4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This framework is capable of solving very complex problems that need to split the logic into small chunks, and provide great user experience. User does not need to wait to receive in-appl notifications or emails that might not be sent because of who knows why! The UI will be updated in real time.&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
@@ -37,7 +37,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;UI Job Caller component can invoke LWC Orchestration Job (below )&lt;/p&gt;</value>
+                    <value>&lt;p&gt;&lt;strong&gt;How this works ?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Click on the button start below to trigger a test job. This test Job will split in 3 tasks and will create Test Accounts using various methods:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;1 account created synchronously through the first task&lt;/li&gt;&lt;li&gt;3 accounts created in parallel through a second task, with 1 account created in each Apex transaction&lt;/li&gt;&lt;li&gt;3 more accounts created in parallel through a third task&lt;span style=&quot;color: rgb(68, 68, 68);&quot;&gt;, with 1 account created in each Apex transaction&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68);&quot;&gt;For more information on how this has been setup, you can take a look into the &quot;Test Job&quot; Custom Metadata type record created in the &lt;/span&gt;&lt;strong style=&quot;color: rgb(68, 68, 68);&quot;&gt;UI Job Configuration&lt;/strong&gt;&lt;span style=&quot;color: rgb(68, 68, 68);&quot;&gt; custom metadata type.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68);&quot;&gt;If you want to setup your own jobs, you can use this Test Job as a reference and create a new UI Job Configuration Custom Metadata type for the job you want to calculate, and develop the Apex Classes that you want to be executed. The Custom Metadata will define the orchestration between the different apex classes, as well as any input parameters you want to pass to any of the classes. So cool !!&lt;/span&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText3</identifier>
@@ -61,7 +61,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;LWC UI Orchestration Component should be added as Utility.&lt;/p&gt;</value>
+                    <value>&lt;p&gt;Do not forget to delete the accounts that have just been created (named &quot;test&quot;) if you want to keep your sandbox clean.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The last steps to use the Job you have defined are the following ones:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Add the LWC UI Orchestration Component present in the Utility Bar in this App into the App your Business users are using.&lt;/li&gt;&lt;li&gt;Add the UIJobCaller LWC into any record page, app page, ...anywhere! you want to trigger that job. It can be, for instance, from a lightning record page, so you can send to the job the recordId as input parameter !&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Enjoy it !!&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText4</identifier>
@@ -70,7 +70,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>UI Job</masterLabel>
+    <masterLabel>UI Job Sample Demo App</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>
