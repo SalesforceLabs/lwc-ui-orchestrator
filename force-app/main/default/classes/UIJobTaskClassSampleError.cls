@@ -15,11 +15,16 @@ public with sharing class UIJobTaskClassSampleError extends UIJobTaskAbstract{
     {
         
             List<Account> accList = new List<Account>();
-            for(integer i=0 ; i< 100; i++)
+            if(Schema.sObjectType.Account.isCreateable() &&
+            Schema.sObjectType.Account.fields.name.isCreateable())
             {
-                accList.add( new Account(Name='Test '+ i));
+                for(integer i=0 ; i< 100; i++)
+                {
+                    String nameStr = 'Test '+ i;
+                    accList.add( new Account(Name=nameStr));
+                }
+                insert accList;
             }
-            insert accList;
             raiseError('Error After Insert');
             return successResult();          
     }

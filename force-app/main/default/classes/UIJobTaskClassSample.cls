@@ -25,9 +25,13 @@ public with sharing class UIJobTaskClassSample extends UIJobTaskAbstract{
             */
 
             List<Account> accList = new List<Account>();
-
-            accList.add( new Account(Name='Test'));
-            insert accList;
+            String nameStr = 'Test';
+            if(Schema.sObjectType.Account.isCreateable() &&
+            Schema.sObjectType.Account.fields.name.isCreateable())
+            {
+                accList.add( new Account(Name=nameStr));
+                insert as system accList;
+            }
                      
             return successResult();  
             /*

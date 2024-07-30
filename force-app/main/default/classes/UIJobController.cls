@@ -145,7 +145,7 @@ public with sharing class UIJobController {
         FROM UI_Tasks__r 
         ORDER BY Sequence__c ASC) 
         FROM UI_Job_Configuration__mdt 
-        WHERE DeveloperName =:metaDataNameStr];
+        WHERE DeveloperName =:metaDataNameStr WITH SYSTEM_MODE];
         if(listOfJobConf.isEmpty())
         {
             raiseError( ' UI Job Configuration ('+ metaDataNameStr+') is not existing.' );
@@ -236,7 +236,19 @@ public with sharing class UIJobController {
         }    
         if(Test.isRunningTest())
         {
-            database.Upsert(new UI_Job_Status__c(Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+            taskId = String.escapeSingleQuotes(taskId);
+            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() &&
+                Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isCreateable()
+                && Schema.sObjectType.UI_Job_Status__c.fields.Request_Id__c.isCreateable()
+                && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isCreateable()
+                && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isCreateable()
+                && Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isUpdateable()
+                && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isUpdateable()
+                && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isUpdateable())
+            {
+                Database.Upsert(new UI_Job_Status__c(Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+            }
         }
         //delete([Select id from UI_Job_Status__c where Request_Id__c=:recordIdStr]);
     }
@@ -249,7 +261,21 @@ public with sharing class UIJobController {
     public static void startTask(String recordIdStr,String taskId){
         if(Test.isRunningTest())
         {
-            Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c='In Progress',Error_Message__c=''),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+            String inProgStatus = 'In Progress';
+            String errorMessage='';
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+            taskId = String.escapeSingleQuotes(taskId);
+            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() &&
+            Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Request_Id__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isUpdateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isUpdateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isUpdateable())
+            {
+                Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=inProgStatus,Error_Message__c=errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+            }
         }
     }
      /**
@@ -274,7 +300,19 @@ public with sharing class UIJobController {
         }
         if(Test.isRunningTest())
         {
-            Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =ErrorMessage), UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+            taskId = String.escapeSingleQuotes(taskId);
+            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() &&
+            Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Request_Id__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isCreateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isUpdateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isUpdateable()
+            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isUpdateable())
+            {
+                Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =ErrorMessage), UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+            }
         }
     }
      /**

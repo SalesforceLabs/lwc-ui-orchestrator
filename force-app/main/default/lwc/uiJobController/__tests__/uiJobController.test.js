@@ -1,3 +1,4 @@
+import { LightningElement, api } from 'lwc';
 import { createElement } from 'lwc';
 import UiJobController from 'c/uiJobController';
 
