@@ -1,7 +1,11 @@
 
 @isTest
 public without sharing class UIJobControllerTest {
-              
+    @TestSetup
+    static void setupData(){
+        PermissionSet ps =  [select id from PermissionSet where name ='UI_Job'][0];         
+        insert new PermissionSetAssignment(AssigneeId = UserInfo.getUserId(), PermissionSetId = ps.Id);
+    }          
     @isTest
     static void testUIJobController() {  
         String recordIdStr ='TestRecordId';

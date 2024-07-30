@@ -86,6 +86,8 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static DataWrapper initPage(String recordIdStr, String metaDataNameStr){  
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
         List<UITask> tasks = new List<UITask>();
         Map<Id,List<UI_Task_Configuration__mdt>> subTaskMap =getSubTaskMap( metaDataNameStr);
         //Get Plan Target Configuration 
@@ -139,6 +141,8 @@ public with sharing class UIJobController {
     **/
     public static UI_Job_Configuration__mdt getJobConfig(String metaDataNameStr)
     {
+        metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
+
         List<UI_Job_Configuration__mdt> listOfJobConf = [SELECT  Id,Label,DeveloperName ,ClassNames__c,
         Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
         (SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,Parellel_Job__c 
@@ -165,6 +169,7 @@ public with sharing class UIJobController {
     **/
     public static Map<Id,List<UI_Task_Configuration__mdt>> getSubTaskMap(String metaDataNameStr)
     {
+        
         Map<Id,List<UI_Task_Configuration__mdt>> subTaskMap = new Map<Id,List<UI_Task_Configuration__mdt>>();
         set<Id>  pallelJobIdList= new set<Id>();
         for(UI_Task_Configuration__mdt subjob : [SELECT  Parellel_Job__c,Label 
@@ -224,6 +229,8 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static void endSuccessJob(String recordIdStr,Id taskId){
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        taskId = String.escapeSingleQuotes(taskId);
         String status ='Success';
         String errorMessage ='';
  
@@ -236,16 +243,7 @@ public with sharing class UIJobController {
         }    
         if(Test.isRunningTest())
         {
-            recordIdStr = String.escapeSingleQuotes(recordIdStr);
-            taskId = String.escapeSingleQuotes(taskId);
-            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() &&
-                Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isCreateable()
-                && Schema.sObjectType.UI_Job_Status__c.fields.Request_Id__c.isCreateable()
-                && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isCreateable()
-                && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isCreateable()
-                && Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isUpdateable()
-                && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isUpdateable()
-                && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isUpdateable())
+            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() )
             {
                 Database.Upsert(new UI_Job_Status__c(Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
             }
@@ -259,20 +257,15 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static void startTask(String recordIdStr,String taskId){
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        taskId = String.escapeSingleQuotes(taskId);
         if(Test.isRunningTest())
         {
             String inProgStatus = 'In Progress';
             String errorMessage='';
-            recordIdStr = String.escapeSingleQuotes(recordIdStr);
-            taskId = String.escapeSingleQuotes(taskId);
-            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() &&
-            Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Request_Id__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isUpdateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isUpdateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isUpdateable())
+
+
+            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() )
             {
                 Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=inProgStatus,Error_Message__c=errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
             }
@@ -286,6 +279,10 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static void endTask(String recordIdStr,String taskId,String errorMessage){   
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        taskId = String.escapeSingleQuotes(taskId);
+        errorMessage = String.escapeSingleQuotes(errorMessage);
+
         String status ='In Progress';
         if(String.isNotEmpty(errorMessage))
         {
@@ -302,14 +299,7 @@ public with sharing class UIJobController {
         {
             recordIdStr = String.escapeSingleQuotes(recordIdStr);
             taskId = String.escapeSingleQuotes(taskId);
-            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() &&
-            Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Request_Id__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isCreateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Task_Configuration_Id__c.isUpdateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Status__c.isUpdateable()
-            && Schema.sObjectType.UI_Job_Status__c.fields.Error_Message__c.isUpdateable())
+            if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable())
             {
                 Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =ErrorMessage), UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
             }
@@ -322,6 +312,9 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static AsyncApexJob checkQueueableStatus(String jobId,String recordIdStr,Id taskid){
         AsyncApexJob jobInfo = new AsyncApexJob();
+        taskId = String.escapeSingleQuotes(taskId);
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        jobId = String.escapeSingleQuotes(jobId);
         List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob WHERE Id=:jobID with SYSTEM_MODE];
         if(!jobInfoList.isEmpty())
         {
@@ -353,6 +346,10 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static UIJobTaskAbstract.ResultWrapper runQueueableServerTask(String recordIdStr, String metaDataNameStr,
     Id taskid,String inputJSON,String lastString){
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        taskId = String.escapeSingleQuotes(taskId);
+        metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
+        lastString = String.escapeSingleQuotes(lastString);
         UI_Task_Configuration__mdt taskConfig = getTaskConfig( taskId);
         String taskClassName = taskConfig.ClassNames__c;
 
@@ -383,6 +380,9 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static UIJobTaskAbstract.ResultWrapper runServerTask(String recordIdStr,Id taskId,String inputJSON ,
     Boolean isStart,String lastString,Boolean isSub){
+        recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        taskId = String.escapeSingleQuotes(taskId);
+        lastString = String.escapeSingleQuotes(lastString);
         UI_Task_Configuration__mdt taskConfig = getTaskConfig( taskId);
         UIJobTaskAbstract.ResultWrapper result = new UIJobTaskAbstract.ResultWrapper();
         System.debug(LoggingLevel.DEBUG,'Task :  ' +  taskConfig.label + ' Start ' + taskConfig.ClassNames__c + ' lastString ' + lastString);
