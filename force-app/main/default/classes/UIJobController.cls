@@ -86,9 +86,15 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static DataWrapper initPage(String recordIdStr, String metaDataNameStr){  
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
-
+        if(String.isNotEmpty(metaDataNameStr) )
+        {
+            metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
+        }
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        
         List<UITask> tasks = new List<UITask>();
         Map<Id,List<UI_Task_Configuration__mdt>> subTaskMap =getSubTaskMap( metaDataNameStr);
         //Get Plan Target Configuration 
@@ -155,7 +161,8 @@ public with sharing class UIJobController {
             FROM UI_Tasks__r 
             ORDER BY Sequence__c ASC) 
             FROM UI_Job_Configuration__mdt 
-            WHERE DeveloperName =:metaDataNameStr WITH SYSTEM_MODE];
+            WHERE DeveloperName =:metaDataNameStr and DeveloperName != null 
+            WITH SYSTEM_MODE];
             if(listOfJobConf.isEmpty())
             {
                 raiseError( ' UI Job Configuration ('+ metaDataNameStr+') is not existing.' );
@@ -228,7 +235,9 @@ public with sharing class UIJobController {
             List<UI_Task_Configuration__mdt> listOfTaskConf = [SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,
             Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
             UI_Job__r.ClassNames__c,UI_Job__r.Parameter_String_1__c,UI_Job__r.Parameter_String_2__c,UI_Job__r.Parameter_String_3__c        
-                    FROM UI_Task_Configuration__mdt where id = :taskId 
+                    FROM UI_Task_Configuration__mdt 
+                    where id = :taskId
+                    And DeveloperName != null  
             ];
 
             if(listOfTaskConf.isEmpty())
@@ -252,8 +261,15 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static void endSuccessJob(String recordIdStr,Id taskId){
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        taskId = String.escapeSingleQuotes(taskId);
+
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        if(String.isNotEmpty(taskId) )
+        {
+            taskId = String.escapeSingleQuotes(taskId);
+        }
         String status ='Success';
         String errorMessage ='';
  
@@ -280,8 +296,15 @@ public with sharing class UIJobController {
     **/
     @AuraEnabled
     public static void startTask(String recordIdStr,String taskId){
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        taskId = String.escapeSingleQuotes(taskId);
+
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        if(String.isNotEmpty(taskId) )
+        {
+            taskId = String.escapeSingleQuotes(taskId);
+        }
         if(Test.isRunningTest())
         {
             String inProgStatus = 'In Progress';
@@ -301,7 +324,8 @@ public with sharing class UIJobController {
     * @param ErrorMessage 
     **/
     @AuraEnabled
-    public static void endTask(String recordIdStr,String taskId,String errorMessage){   
+    public static void endTask(String recordIdStr,String taskId,String errorMessage){  
+         
         recordIdStr = String.escapeSingleQuotes(recordIdStr);
         taskId = String.escapeSingleQuotes(taskId);
         errorMessage = String.escapeSingleQuotes(errorMessage);
@@ -333,19 +357,28 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static AsyncApexJob checkQueueableStatus(String jobStr,String recordIdStr,Id taskid){
         AsyncApexJob jobInfo = new AsyncApexJob();
-        taskId = String.escapeSingleQuotes(taskId);
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        jobStr = String.escapeSingleQuotes(jobStr);
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        if(String.isNotEmpty(taskId) )
+        {
+            taskId = String.escapeSingleQuotes(taskId);
+        }
         if(String.isEmpty(jobStr))
         {
 
             raiseError('JobId is required.');
         }else
         {
+            jobStr = String.escapeSingleQuotes(jobStr);
             Id jobId = Id.valueOf(jobStr);
  
-
-            List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob WHERE Id=:jobId with SYSTEM_MODE];
+            String jobType = 'Queueable';
+            List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob 
+            WHERE Id=:jobId 
+            And JobType = :jobType
+            with SYSTEM_MODE];
             if(!jobInfoList.isEmpty())
             {
                 jobInfo = jobInfoList[0];
@@ -377,10 +410,21 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static UIJobTaskAbstract.ResultWrapper runQueueableServerTask(String recordIdStr, String metaDataNameStr,
     Id taskid,String inputJSON,String lastString){
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        taskId = String.escapeSingleQuotes(taskId);
+        if(String.isNotEmpty(lastString) )
+        {
+            lastString = String.escapeSingleQuotes(lastString);
+        }
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        if(String.isNotEmpty(taskId) )
+        {
+            taskId = String.escapeSingleQuotes(taskId);
+        }
+      
         metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
-        lastString = String.escapeSingleQuotes(lastString);
+
         UI_Task_Configuration__mdt taskConfig = getTaskConfig( taskId);
         String taskClassName = taskConfig.ClassNames__c;
 
@@ -411,9 +455,19 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static UIJobTaskAbstract.ResultWrapper runServerTask(String recordIdStr,Id taskId,String inputJSON ,
     Boolean isStart,String lastString,Boolean isSub){
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        taskId = String.escapeSingleQuotes(taskId);
-        lastString = String.escapeSingleQuotes(lastString);
+        if(String.isNotEmpty(lastString) )
+        {
+            lastString = String.escapeSingleQuotes(lastString);
+        }
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        if(String.isNotEmpty(taskId) )
+        {
+            taskId = String.escapeSingleQuotes(taskId);
+        }
+        
         UI_Task_Configuration__mdt taskConfig = getTaskConfig( taskId);
         UIJobTaskAbstract.ResultWrapper result = new UIJobTaskAbstract.ResultWrapper();
         System.debug(LoggingLevel.DEBUG,'Task :  ' +  taskConfig.label + ' Start ' + taskConfig.ClassNames__c + ' lastString ' + lastString);

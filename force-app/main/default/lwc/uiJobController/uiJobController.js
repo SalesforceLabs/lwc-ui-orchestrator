@@ -35,7 +35,7 @@ export default class uiJobController extends LightningElement {
     titleLabel ='UI Job';
     jobCompletionMessage = 'Job is completed sucessfully';
     connectedCallback(){
-        if(!this.isdisplaybutton)
+        if(!this.isdisplaybutton && (this.flownsucessaction === 'Close' || this.flownsucessaction === 'Next') )
         {
             this.initPage(true);
         }else

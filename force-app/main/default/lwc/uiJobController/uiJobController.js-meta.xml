@@ -23,7 +23,7 @@
             <property name="recordid" type="String"  label="Enter Record Id"/>
             <property name="metadataname" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
             <property name="isdisplaybutton" type="Boolean" default="true" label="Whether Start button is displayed."/>
-            <property name="flownsucessaction" type="String" default="Next"  label="Navigation action when job is finished sucessfully.(Next / Close)"/>
+            <property name="flownsucessaction" type="String" default="Next"  label="Navigation action when job is finished sucessfully.(Next / Close )"/>
             <property name="errormessage" role="outputOnly" type="String"  label="Error message."/>
         </targetConfig>
       </targetConfigs>

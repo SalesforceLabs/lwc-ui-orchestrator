@@ -3,8 +3,12 @@
 public without sharing class UIJobControllerTest {
     @TestSetup
     static void setupData(){
-        PermissionSet ps =  [select id from PermissionSet where name ='UI_Job'][0];         
-        insert new PermissionSetAssignment(AssigneeId = UserInfo.getUserId(), PermissionSetId = ps.Id);
+        PermissionSet ps =  [select id from PermissionSet where name ='UI_Job'][0];   
+        List< PermissionSetAssignment> paList = [Select id from PermissionSetAssignment where  AssigneeId = :UserInfo.getUserId() and  PermissionSetId = :ps.Id];
+        if(paList.isEmpty())   
+        { 
+            insert new PermissionSetAssignment(AssigneeId = UserInfo.getUserId(), PermissionSetId = ps.Id);
+        }
     }          
     @isTest
     static void testUIJobController() {  

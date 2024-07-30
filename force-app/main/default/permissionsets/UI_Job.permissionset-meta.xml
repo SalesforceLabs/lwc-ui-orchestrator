@@ -76,4 +76,8 @@
         <object>UI_Job_Status__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>UI_Job</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
