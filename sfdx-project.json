@@ -1,0 +1,24 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "./force-app/main/default",
+      "default": false,
+      "package": "LWC UI Orchestrator",
+      "versionDescription": "UI Job Controllers that allows you to execute jobs from a LWC instead of triggering and orchestrating them directly from the server"
+    }
+  ],
+  "name": "UIJobController",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "58.0",
+  "packageAliases": {
+    "LWC UI Orchestrator": "0Hoam00000022ddCAA",
+    "LWC UI Orchestrator@0.1.0-1-master": "04tam000000iekvAAA"
+  }
+}

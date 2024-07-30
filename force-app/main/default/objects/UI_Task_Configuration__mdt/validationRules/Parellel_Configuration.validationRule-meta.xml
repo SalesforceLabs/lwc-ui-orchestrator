@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parellel_Configuration</fullName>
+    <active>true</active>
+    <errorConditionFormula>Parellel_Job__c == Null &amp;&amp;  TEXT(Type__c) == &apos;Parellel&apos;</errorConditionFormula>
+    <errorDisplayField>Parellel_Job__c</errorDisplayField>
+    <errorMessage>Parellel Job should be set when type is Parellel .</errorMessage>
+</ValidationRule>

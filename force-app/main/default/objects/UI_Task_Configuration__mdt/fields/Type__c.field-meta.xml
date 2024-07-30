@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Parellel</fullName>
+                <default>true</default>
+                <label>Parellel</label>
+            </value>
+            <value>
+                <fullName>Sync</fullName>
+                <default>false</default>
+                <label>Sync</label>
+            </value>
+            <value>
+                <fullName>Chain</fullName>
+                <default>false</default>
+                <label>Chain</label>
+            </value>
+            <value>
+                <fullName>Queueable</fullName>
+                <default>false</default>
+                <label>Queueable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

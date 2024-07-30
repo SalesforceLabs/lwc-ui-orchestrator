@@ -1,0 +1,12 @@
+<aura:component implements="lightning:utilityItem" access="global" >
+    <aura:attribute name="supportsPopOut" type="Boolean" default="false" />
+    <aura:attribute name="recordIdStr" type="String" default="Test_Job"/>
+    <aura:attribute name="metaDataName" type="String" default="Test_Job"/>
+    <aura:attribute name="inputJSON" type="String" default=""/>
+    <lightning:utilityBarAPI aura:id="utilitybar" />
+    <lightning:messageChannel type="Call_UIJob__c"   aura:id="callUIJobMessageChannel" onMessage="{!c.handleMessage}"/>
+    <c:uiJobController aura:id="uiJobLWC" recordid="{!v.recordIdStr}" 
+    metadataname="{!v.metaDataName}"
+    inputJSON="{!v.inputJSON}" onjobEnd="{!c.handleJobEnd}"></c:uiJobController>
+
+</aura:component>

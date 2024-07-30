@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>metaDataName</name>
+                    <value>Test_Job</value>
+                </componentInstanceProperties>
+                <componentName>uiJobCaller</componentName>
+                <identifier>c_uiJobCaller</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>buttonLabel</name>
+                    <value>Start</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>metaDataName</name>
+                    <value>Test_Job</value>
+                </componentInstanceProperties>
+                <componentName>CallUIJobComponent</componentName>
+                <identifier>c_callUIJobComponent</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>UI Job</masterLabel>
+    <template>
+        <name>flexipage:defaultAppHomeTemplate</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

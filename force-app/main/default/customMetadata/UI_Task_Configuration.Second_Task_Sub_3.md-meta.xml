@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Second Task Sub 3</label>
+    <protected>false</protected>
+    <values>
+        <field>ClassNames__c</field>
+        <value xsi:type="xsd:string">UIJobTaskClassSample</value>
+    </values>
+    <values>
+        <field>Configuration_JSON__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parameter_String_1__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parameter_String_2__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parameter_String_3__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parellel_Job__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Sequence__c</field>
+        <value xsi:type="xsd:double">1.0</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">Sync</value>
+    </values>
+    <values>
+        <field>UI_Job__c</field>
+        <value xsi:type="xsd:string">Test_Sub_Purge_Job</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" 
+ fqn="uiJobController">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>UI Job Controller</masterLabel>
+    <description>Run multiple task from UI.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__UtilityBar</target>
+         <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>  
+        <targetConfig targets="lightning__AppPage">
+            <property name="metadataname" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
+            <property name="isdisplaybutton" type="Boolean" default="true" label="Whether Start button is displayed."/>
+        </targetConfig>
+        <targetConfig targets="lightning__UtilityBar">
+            <property name="metadataname" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
+            <property name="isdisplaybutton" type="Boolean" default="true" label="Whether Start button is displayed."/>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordid" type="String"  label="Enter Record Id"/>
+            <property name="metadataname" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
+            <property name="isdisplaybutton" type="Boolean" default="true" label="Whether Start button is displayed."/>
+            <property name="flownsucessaction" type="String" default="Next"  label="Navigation action when job is finished sucessfully.(Next / Close)"/>
+            <property name="errormessage" role="outputOnly" type="String"  label="Error message."/>
+        </targetConfig>
+      </targetConfigs>
+</LightningComponentBundle>
