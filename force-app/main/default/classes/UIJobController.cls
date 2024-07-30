@@ -88,6 +88,7 @@ public with sharing class UIJobController {
     public static DataWrapper initPage(String recordIdStr, String metaDataNameStr){  
         recordIdStr = String.escapeSingleQuotes(recordIdStr);
         metaDataNameStr = String.escapeSingleQuotes(metaDataNameStr);
+
         List<UITask> tasks = new List<UITask>();
         Map<Id,List<UI_Task_Configuration__mdt>> subTaskMap =getSubTaskMap( metaDataNameStr);
         //Get Plan Target Configuration 
@@ -145,23 +146,27 @@ public with sharing class UIJobController {
         if(String.isBlank(metaDataNameStr))
         {
             raiseError('MetaData Name is required.');
-        }
-        //Get UI Job Configuration
-        List<UI_Job_Configuration__mdt> listOfJobConf = [SELECT  Id,Label,DeveloperName ,ClassNames__c,
-        Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
-        (SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,Parellel_Job__c 
-        FROM UI_Tasks__r 
-        ORDER BY Sequence__c ASC) 
-        FROM UI_Job_Configuration__mdt 
-        WHERE DeveloperName =:metaDataNameStr WITH SYSTEM_MODE];
-        if(listOfJobConf.isEmpty())
-        {
-            raiseError( ' UI Job Configuration ('+ metaDataNameStr+') is not existing.' );
-            
         }else
         {
-            return listOfJobConf[0];
+            //Get UI Job Configuration
+            List<UI_Job_Configuration__mdt> listOfJobConf = [SELECT  Id,Label,DeveloperName ,ClassNames__c,
+            Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
+            (SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,Parellel_Job__c 
+            FROM UI_Tasks__r 
+            ORDER BY Sequence__c ASC) 
+            FROM UI_Job_Configuration__mdt 
+            WHERE DeveloperName =:metaDataNameStr WITH SYSTEM_MODE];
+            if(listOfJobConf.isEmpty())
+            {
+                raiseError( ' UI Job Configuration ('+ metaDataNameStr+') is not existing.' );
+                
+            }else
+            {
+                return listOfJobConf[0];
+            }
         }
+
+        
         return new UI_Job_Configuration__mdt();
 
                
@@ -207,30 +212,35 @@ public with sharing class UIJobController {
     }
     /**
     * @description get UI Task configuration
-    * @param taskId 
+    * @param taskIdstr 
     * @return UI_Task_Configuration__mdt 
     **/    
-    public static UI_Task_Configuration__mdt getTaskConfig(String taskId)
+    public static UI_Task_Configuration__mdt getTaskConfig(String taskIdstr)
     {
-        taskId = String.escapeSingleQuotes(taskId);
-        if(String.isBlank(taskId))
+        taskIdstr = String.escapeSingleQuotes(taskIdstr);
+        if(String.isEmpty(taskIdstr))
         {
-            raiseError('taskId is required.');
-        }
-        List<UI_Task_Configuration__mdt> listOfTaskConf = [SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,
-        Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
-        UI_Job__r.ClassNames__c,UI_Job__r.Parameter_String_1__c,UI_Job__r.Parameter_String_2__c,UI_Job__r.Parameter_String_3__c        
-                FROM UI_Task_Configuration__mdt where id = :taskId 
-        ];
 
-        if(listOfTaskConf.isEmpty())
-        {
-            raiseError( 'The Task Configuration ('+ taskId+') is not existing.' );
-            
+            raiseError('taskId is required.');
         }else
         {
-            return listOfTaskConf[0];
+            Id taskId = Id.valueOf(taskIdstr);
+            List<UI_Task_Configuration__mdt> listOfTaskConf = [SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,
+            Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
+            UI_Job__r.ClassNames__c,UI_Job__r.Parameter_String_1__c,UI_Job__r.Parameter_String_2__c,UI_Job__r.Parameter_String_3__c        
+                    FROM UI_Task_Configuration__mdt where id = :taskId 
+            ];
+
+            if(listOfTaskConf.isEmpty())
+            {
+                raiseError( 'The Task Configuration ('+ taskId+') is not existing.' );
+                
+            }else
+            {
+                return listOfTaskConf[0];
+            }
         }
+        
         return new UI_Task_Configuration__mdt();
 
 
@@ -310,8 +320,6 @@ public with sharing class UIJobController {
         }
         if(Test.isRunningTest())
         {
-            recordIdStr = String.escapeSingleQuotes(recordIdStr);
-            taskId = String.escapeSingleQuotes(taskId);
             if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable())
             {
                 Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =ErrorMessage), UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
@@ -323,32 +331,36 @@ public with sharing class UIJobController {
     * @param jobId 
     **/
     @AuraEnabled
-    public static AsyncApexJob checkQueueableStatus(String jobId,String recordIdStr,Id taskid){
+    public static AsyncApexJob checkQueueableStatus(String jobStr,String recordIdStr,Id taskid){
         AsyncApexJob jobInfo = new AsyncApexJob();
         taskId = String.escapeSingleQuotes(taskId);
         recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        jobId = String.escapeSingleQuotes(jobId);
-        if(String.isEmpty(JobId))
+        jobStr = String.escapeSingleQuotes(jobStr);
+        if(String.isEmpty(jobStr))
         {
 
             raiseError('JobId is required.');
-        }
-
-        List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob WHERE Id=:jobId with SYSTEM_MODE];
-        if(!jobInfoList.isEmpty())
+        }else
         {
-            jobInfo = jobInfoList[0];
-    
-            if (jobInfo.Status =='Completed' || jobInfo.Status =='Aborted' || jobInfo.Status =='Failed') {
-                String message = '';
-                if( jobInfo.Status =='Aborted' || jobInfo.Status =='Failed') {  
-                    message = jobInfo.ExtendedStatus;                  
-                    if(String.isEmpty(message))
-                    {
-                        message = jobId + ' is Failed';
-                    }           
+            Id jobId = Id.valueOf(jobStr);
+ 
+
+            List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob WHERE Id=:jobId with SYSTEM_MODE];
+            if(!jobInfoList.isEmpty())
+            {
+                jobInfo = jobInfoList[0];
+        
+                if (jobInfo.Status =='Completed' || jobInfo.Status =='Aborted' || jobInfo.Status =='Failed') {
+                    String message = '';
+                    if( jobInfo.Status =='Aborted' || jobInfo.Status =='Failed') {  
+                        message = jobInfo.ExtendedStatus;                  
+                        if(String.isEmpty(message))
+                        {
+                            message = jobId + ' is Failed';
+                        }           
+                    }
+                    endTask(recordIdStr,taskid,message); 
                 }
-                endTask(recordIdStr,taskid,message); 
             }
         }
         return jobInfo;
