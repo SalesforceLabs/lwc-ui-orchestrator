@@ -44,7 +44,7 @@ public with sharing class UIJobDemo_UITask extends UIJobTaskAbstract{
     { 
 
         List<Account> queryResult = [Select Id from Account where name like 'LWC Orchestration Test Account%'];
-        if(Schema.sObjectType.Account.isDeletable() )
+        if(Account.sObjectType.getDescribe().isDeletable() )
         {
             Database.delete(queryResult,true,AccessLevel.SYSTEM_MODE);    
         }
