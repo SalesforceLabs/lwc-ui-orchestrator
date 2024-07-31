@@ -1,7 +1,7 @@
 /**
  * @description       : UI Job Controller Class
  * @group             : 
- * @last modified on  : 25-09-2023
+ * @last modified on  : 31-07-2024 Sung Rin Park
 **/
 @SuppressWarnings('PMD.EagerlyLoadedDescribeSObjectResult')
 public with sharing class UIJobController {

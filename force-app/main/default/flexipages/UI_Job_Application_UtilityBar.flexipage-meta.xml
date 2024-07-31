@@ -35,7 +35,7 @@
                 <componentInstanceProperties>
                     <name>width</name>
                     <type>decorator</type>
-                    <value>340</value>
+                    <value>640</value>
                 </componentInstanceProperties>
                 <componentName>UIJobControllerUtility</componentName>
                 <identifier>UIJobControllerUtility</identifier>

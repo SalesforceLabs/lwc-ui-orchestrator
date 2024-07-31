@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Create 149 Account (Sub 2)</label>
+    <protected>false</protected>
+    <values>
+        <field>ClassNames__c</field>
+        <value xsi:type="xsd:string">UIJobDemo_UITask</value>
+    </values>
+    <values>
+        <field>Configuration_JSON__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parameter_String_1__c</field>
+        <value xsi:type="xsd:string">createDemoAccount</value>
+    </values>
+    <values>
+        <field>Parameter_String_2__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parameter_String_3__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Parellel_Job__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Sequence__c</field>
+        <value xsi:type="xsd:double">2.0</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">Sync</value>
+    </values>
+    <values>
+        <field>UI_Job__c</field>
+        <value xsi:type="xsd:string">Demo_Sub_Parallel_Job</value>
+    </values>
+</CustomMetadata>
