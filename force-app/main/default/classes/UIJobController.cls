@@ -326,9 +326,18 @@ public with sharing class UIJobController {
     @AuraEnabled
     public static void endTask(String recordIdStr,String taskId,String errorMessage){  
          
-        recordIdStr = String.escapeSingleQuotes(recordIdStr);
-        taskId = String.escapeSingleQuotes(taskId);
-        errorMessage = String.escapeSingleQuotes(errorMessage);
+        if(String.isNotEmpty(recordIdStr) )
+        {
+            recordIdStr = String.escapeSingleQuotes(recordIdStr);
+        }
+        if(String.isNotEmpty(taskId) )
+        {
+            taskId = String.escapeSingleQuotes(taskId);
+        }
+        if(String.isNotEmpty(errorMessage) )
+        {
+            errorMessage = String.escapeSingleQuotes(errorMessage);
+        }
 
         String status ='In Progress';
         if(String.isNotEmpty(errorMessage))

@@ -343,6 +343,7 @@ export default class uiJobController extends LightningElement {
 
             endSuccessJob({ recordIdStr: this.recordid ,taskId : taskid}).then(result=>{
                 console.log(result);
+                this.inputJSON       = '';
                 this.dispatchEvent(new RefreshEvent());
                 notifyRecordUpdateAvailable([{recordId: this.recordid}]);
                 this.showToastEvent('Job Done',this.jobCompletionMessage, 'info');
