@@ -43,7 +43,7 @@ public with sharing class UIJobDemo_UITask extends UIJobTaskAbstract{
     private ResultWrapper purgeData()
     { 
 
-        List<sObject> queryResult = [Select Id from Account where name like 'LWC Orchestration Test Account%'];
+        List<Account> queryResult = [Select Id from Account where name like 'LWC Orchestration Test Account%'];
         if(Schema.sObjectType.Account.isDeletable() )
         {
             Database.delete(queryResult,true,AccessLevel.SYSTEM_MODE);    
