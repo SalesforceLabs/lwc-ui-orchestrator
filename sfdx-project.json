@@ -6,9 +6,10 @@
     },
     {
       "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionNumber": "0.2.0.1",
       "path": "./force-app/main/default",
       "default": false,
+      "ancestorVersion": "HIGHEST",
       "package": "LWC UI Orchestrator Managed",
       "versionDescription": "UI Job Controllers that allows you to execute jobs from a LWC instead of triggering and orchestrating them directly from the server"
     }
@@ -18,6 +19,7 @@
   "sourceApiVersion": "58.0",
   "packageAliases": {
     "LWC UI Orchestrator Managed": "0Hoam00000023g9CAA",
-    "LWC UI Orchestrator Managed@0.1.0-1": "04tam000000jOqzAAE"
+    "LWC UI Orchestrator Managed@0.1.0-1": "04tam000000jOqzAAE",
+    "LWC UI Orchestrator Managed@0.2.0-1": "04tam000000jo2HAAQ"
   }
 }
