@@ -540,7 +540,11 @@ public with sharing class UIJobController {
         Type taskClassType;
         UIJobTaskAbstract taskClass;
         try{
-            taskClassType = Type.forName(taskClassName);
+            taskClassType = Type.forName('',taskClassName);
+            if (taskClassType == null)
+            {
+                taskClassType = Type.forName(taskClassName);
+            }
             taskClass = (UIJobTaskAbstract)taskClassType.newInstance();
         }catch(Exception e)
         {
@@ -567,6 +571,7 @@ public with sharing class UIJobController {
         }
         return result;
     }
+    
     /** 
     * @description Exception Class for custom exception
     */  

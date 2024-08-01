@@ -19,7 +19,11 @@ public class UIJobTaskQueueable implements Queueable {
         Savepoint sp = Database.setSavepoint();
         try{
             String taskClassName = taskConfig.ClassNames__c;
-            Type taskClassType = Type.forName(taskClassName);
+            Type taskClassType = Type.forName('',taskClassName);
+            if (taskClassType == null)
+            {
+                taskClassType = Type.forName(taskClassName);
+            }
             if(taskClassType == null)
             {
                 UIJobTaskAbstract.raiseError(taskClassName + ' is not found.' );
