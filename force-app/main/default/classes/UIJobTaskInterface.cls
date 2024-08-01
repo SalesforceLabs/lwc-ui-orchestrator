@@ -3,7 +3,7 @@
  * @group             : 
  * @last modified on  : 25-09-2023
 **/
-public interface UIJobTaskInterface {
+global interface UIJobTaskInterface {
     /**
      * @description       : Function which will contain logic for Task 
      * @last modified on  :25-09-2023
