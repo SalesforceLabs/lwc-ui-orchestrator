@@ -17,7 +17,7 @@ global with sharing class UIJobFlow_UITask extends UIJobTaskAbstract{
         {
             inputMap =convertJsonToMap(inputJSON);
         }
-        inputMap.put('recordIdStr'      ,recordIdStr);
+        inputMap.put('recordId'      ,recordIdStr);
         inputMap.put('paramOne'         ,paramOne);
         inputMap.put('paramTwo'         ,paramTwo);
         inputMap.put('paramThree'       ,paramThree);
