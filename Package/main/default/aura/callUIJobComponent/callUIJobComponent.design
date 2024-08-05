@@ -1,4 +1,0 @@
-<design:component >
-    <design:attribute name="metaDataName" label="Configuration Name for UI Job" description="Name of the Custom Meta data for UI Job" />
-    <design:attribute name="buttonLabel" label="Label of Button" description="Label of Button" />
-</design:component>

@@ -1,9 +1,0 @@
-.successRowColor{
-    background-color: hsl(136, 67%, 80%);
-}
-.inprogressRowColor{
-    background-color: hwb(207 84% 5%);
-}
-.failedRowColor{
-    background-color: hsl(0, 74%, 82%);
-}
