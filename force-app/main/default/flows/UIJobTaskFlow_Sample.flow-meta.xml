@@ -3,6 +3,7 @@
     <apiVersion>61.0</apiVersion>
     <environments>Default</environments>
     <interviewLabel>UIJobTaskFlow_Sample {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
     <label>UIJobTaskFlow_Sample</label>
     <processMetadataValues>
         <name>BuilderType</name>
