@@ -60,6 +60,10 @@
                 <behavior>Edit</behavior>
                 <field>ClassNames__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>is_Flow__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

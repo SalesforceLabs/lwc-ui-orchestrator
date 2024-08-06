@@ -38,4 +38,8 @@
         <field>UI_Job__c</field>
         <value xsi:nil="true"/>
     </values>
+    <values>
+        <field>is_Flow__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
 </CustomMetadata>

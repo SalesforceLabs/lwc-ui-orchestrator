@@ -234,7 +234,7 @@ public with sharing class UIJobController {
             Id taskId = Id.valueOf(taskIdstr);
             List<UI_Task_Configuration__mdt> listOfTaskConf = [SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,
             Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
-            UI_Job__r.ClassNames__c,UI_Job__r.Parameter_String_1__c,UI_Job__r.Parameter_String_2__c,UI_Job__r.Parameter_String_3__c        
+            UI_Job__r.ClassNames__c,is_Flow__c,UI_Job__r.Parameter_String_1__c,UI_Job__r.Parameter_String_2__c,UI_Job__r.Parameter_String_3__c        
                     FROM UI_Task_Configuration__mdt 
                     where id = :taskId
                     And DeveloperName != null  
@@ -537,6 +537,10 @@ public with sharing class UIJobController {
             }
         }
         String taskClassName = (String)taskconf.get('ClassNames__c');
+        if(taskconfig.is_Flow__c)
+        {
+            taskClassName = 'UIJobFlow_UITask';
+        }
         Type taskClassType;
         UIJobTaskAbstract taskClass;
         try{

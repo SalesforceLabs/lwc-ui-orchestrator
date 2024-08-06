@@ -333,6 +333,8 @@ export default class uiJobController extends LightningElement {
             task.class='successRowColor';
             task.errorMessage = message;  
         }
+        task.lastString     = '';
+        task.inputJSON      = '';
     }
     endJob(exception,taskid){
         if(exception)
@@ -343,7 +345,8 @@ export default class uiJobController extends LightningElement {
 
             endSuccessJob({ recordIdStr: this.recordid ,taskId : taskid}).then(result=>{
                 console.log(result);
-                this.inputJSON       = '';
+                this.inputJSON      = '';
+                this.inJSON         = '';
                 this.dispatchEvent(new RefreshEvent());
                 notifyRecordUpdateAvailable([{recordId: this.recordid}]);
                 this.showToastEvent('Job Done',this.jobCompletionMessage, 'info');

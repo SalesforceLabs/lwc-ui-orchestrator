@@ -3,9 +3,17 @@
     <classAccesses>
         <apexClass>UIJobController</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
+    </classAccesses>  
+    <classAccesses>
+        <apexClass>UIJobFlowDemo_Action</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>   
     <classAccesses>
         <apexClass>UIJobControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UIJobFlow_UITask</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

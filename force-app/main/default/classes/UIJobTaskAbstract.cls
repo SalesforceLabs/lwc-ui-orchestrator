@@ -14,6 +14,7 @@ global virtual class UIJobTaskAbstract implements UIJobTaskInterface {
     * @description ResultWrapper
     * type Class Wrapper
     **/
+   
     global class ResultWrapper{
         /**
         * @description 
