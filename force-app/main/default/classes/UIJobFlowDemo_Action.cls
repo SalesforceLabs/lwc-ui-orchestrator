@@ -1,19 +1,19 @@
-public with sharing class UIJobFlowDemo_Action {
+global with sharing class UIJobFlowDemo_Action {
 
-    public class RequestParameters {
+    global class RequestParameters {
         @InvocableVariable(label = 'Last Id' description = 'The Last Id of the previous query' required=false)
-        public string lastString;
+        global string lastString;
         @InvocableVariable(label = 'No of Records' description = 'No of record to be retrieved' required=true)
-        public integer noOfRecords;
+        global integer noOfRecords;
        
     }
-    public class ResponseParameters {
+    global class ResponseParameters {
         @InvocableVariable(label = 'List Of Records' description = 'List of Records' required=true)
-        public List<sObject> listOfRecords;
+        global List<sObject> listOfRecords;
            
     }
     @InvocableMethod(callout = true label ='Retrieve Demo Accounts with limit' category = 'Utility')
-    public static List<ResponseParameters> retrieveRecordWithLimit(List<RequestParameters> listOfreqParam){ 
+    global static List<ResponseParameters> retrieveRecordWithLimit(List<RequestParameters> listOfreqParam){ 
         RequestParameters reqParam =listOfreqParam[0];
         String lastString = reqParam.lastString;
         Integer noOfRecord = reqParam.noOfRecords;

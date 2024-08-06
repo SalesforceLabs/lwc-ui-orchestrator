@@ -2,9 +2,9 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>61.0</apiVersion>
     <environments>Default</environments>
-    <interviewLabel>UI Job Screen Flow Sample {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>LWC UI Orchestrator in Screen Flow Sample {!$Flow.CurrentDateTime}</interviewLabel>
     <isTemplate>true</isTemplate>
-    <label>UI Job Screen Flow Sample</label>
+    <label>LWC UI Orchestrator in Screen Flow Sample</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>

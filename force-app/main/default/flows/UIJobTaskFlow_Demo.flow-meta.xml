@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <isTemplate>true</isTemplate>
     <actionCalls>
         <name>Get_Accounts</name>
         <label>Get Accounts</label>
@@ -248,8 +247,8 @@
         <dataType>String</dataType>
         <expression>&quot;LWC Orchestration Test Account Chain : &quot;  +  TEXT({!chainNum})  +  &quot; Count : &quot;  +  TEXT({!count})</expression>
     </formulas>
-    <interviewLabel>UIJobTaskFlow_Demo {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>UIJobTaskFlow_Demo</label>
+    <interviewLabel>LWC UI Orchestrator Task Flow Demo {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>LWC UI Orchestrator Task Flow Demo</label>
     <loops>
         <name>Loop_1</name>
         <label>Loop 1</label>
