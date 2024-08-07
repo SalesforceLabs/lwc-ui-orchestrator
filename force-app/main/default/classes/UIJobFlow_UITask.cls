@@ -24,7 +24,13 @@ global with sharing class UIJobFlow_UITask extends UIJobTaskAbstract{
         inputMap.put('lastString'       ,lastString);
       
 
-        Flow.Interview myFlow = Flow.Interview.createInterview(paramOne, inputMap);
+        Flow.Interview myFlow ;
+        try{
+            myFlow = Flow.Interview.createInterview(paramOne, inputMap);
+        }catch(Exception e)
+        {
+            myFlow = Flow.Interview.createInterview('lwcorch',paramOne, inputMap);
+        }
         myFlow.start();
         lastString = (String)myFlow.getVariableValue('lastString');
         String outputMessage = (String)myFlow.getVariableValue('outputMessage');
