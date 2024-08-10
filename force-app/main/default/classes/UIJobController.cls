@@ -154,7 +154,7 @@ public with sharing class UIJobController {
             raiseError('MetaData Name is required.');
         }else
         {
-            //Get UI Job Configuration
+            //Get UI Job Configuration Custom Meta Data with Task Custom Meta data
             List<UI_Job_Configuration__mdt> listOfJobConf = [SELECT  Id,Label,DeveloperName ,ClassNames__c,
             Parameter_String_1__c,Parameter_String_2__c,Parameter_String_3__c,
             (SELECT  Id,Label,DeveloperName,ClassNames__c,Type__c,Sequence__c,Parellel_Job__c 
@@ -162,7 +162,7 @@ public with sharing class UIJobController {
             ORDER BY Sequence__c ASC) 
             FROM UI_Job_Configuration__mdt 
             WHERE DeveloperName =:metaDataNameStr and DeveloperName != null 
-            WITH SYSTEM_MODE];
+            WITH USER_MODE];
             if(listOfJobConf.isEmpty())
             {
                 raiseError( ' UI Job Configuration ('+ metaDataNameStr+') is not existing.' );
