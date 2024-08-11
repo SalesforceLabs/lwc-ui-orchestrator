@@ -7,6 +7,7 @@
     <description>Run multiple task from UI.</description>
     <targets>
         <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
         <target>lightning__UtilityBar</target>
          <target>lightning__FlowScreen</target>
     </targets>
