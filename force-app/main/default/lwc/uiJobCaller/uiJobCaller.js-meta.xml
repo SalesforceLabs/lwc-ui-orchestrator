@@ -10,6 +10,18 @@
         <targetConfigs>  
             <targetConfig targets="lightning__AppPage">
                 <property name="metaDataName" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
+                <property name="buttonLabel" type="String" default="Start" label="Label Of Button"/>
+                <property name="inputJSON" type="String" default="" label="Input JSON (Optional)"/>
+            </targetConfig>
+            <targetConfig targets="lightning__RecordPage">
+                <property name="metaDataName" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
+                <property name="buttonLabel" type="String" default="Start" label="Label Of Button"/>
+                <property name="inputJSON" type="String" default="" label="Input JSON (Optional)"/>
+            </targetConfig>
+            <targetConfig targets="lightning__FlowScreen">
+                <property name="metaDataName" type="String" default="Test_Job" label="Enter Custom Meta Name"/>
+                <property name="buttonLabel" type="String" default="Start" label="Label Of Button"/>
+                <property name="inputJSON" type="String" default="" label="Input JSON (Optional)"/>
             </targetConfig>
         </targetConfigs> 
 </LightningComponentBundle>

@@ -106,11 +106,14 @@
                     <value>Start Demo to execute a Job with Apex transactions</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inputJSON</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>metaDataName</name>
                     <value>Demo_Job</value>
                 </componentInstanceProperties>
-                <componentName>callUIJobComponent</componentName>
-                <identifier>c_callUIJobComponent</identifier>
+                <componentName>uiJobCaller</componentName>
+                <identifier>lwcorch_uiJobCaller</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -120,11 +123,14 @@
                     <value>Start Demo to execute a Job with a set of Flows to be called</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inputJSON</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>metaDataName</name>
                     <value>Demo_Job2</value>
                 </componentInstanceProperties>
-                <componentName>callUIJobComponent</componentName>
-                <identifier>c_callUIJobComponent3</identifier>
+                <componentName>uiJobCaller</componentName>
+                <identifier>lwcorch_uiJobCaller4</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -192,11 +198,14 @@
                     <value>Purge Apex Demo Data</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inputJSON</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>metaDataName</name>
                     <value>Demo_Purge_Records</value>
                 </componentInstanceProperties>
-                <componentName>callUIJobComponent</componentName>
-                <identifier>c_callUIJobComponent2</identifier>
+                <componentName>uiJobCaller</componentName>
+                <identifier>lwcorch_uiJobCaller3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -206,11 +215,14 @@
                     <value>Purge Flow Demo Data</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>inputJSON</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>metaDataName</name>
                     <value>Demo_Purge_Records2</value>
                 </componentInstanceProperties>
-                <componentName>callUIJobComponent</componentName>
-                <identifier>c_callUIJobComponent4</identifier>
+                <componentName>uiJobCaller</componentName>
+                <identifier>lwcorch_uiJobCaller2</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>

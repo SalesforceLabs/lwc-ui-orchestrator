@@ -1,4 +1,4 @@
-import { LightningElement, track ,api} from 'lwc';
+import { LightningElement, track ,api, wire} from 'lwc';
 //lightning confirm popup
 import initPlanPage from '@salesforce/apex/UIJobController.initPage';
 import runServerTask from '@salesforce/apex/UIJobController.runServerTask';
@@ -12,6 +12,11 @@ import { RefreshEvent } from "lightning/refresh";
 import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import {
+    subscribe,
+    MessageContext
+} from 'lightning/messageService';
+import callUIJob from '@salesforce/messageChannel/Call_UIJob_Hidden__c';
 
 
 //import custom label
@@ -25,15 +30,33 @@ export default class uiJobController extends LightningElement {
     @api metadataname;
     @api isdisplaybutton;
     @api flownsucessaction;
+    @api isUtility =false;
     @api errormessage;
     @api inputJSON = '';
     @track isLoading = false;
     @track isInProgress = false;
+    
     @track tasks = [];
+    subscription = null;
     columns = columns;
     inJSON=''
     titleLabel ='UI Job';
     jobCompletionMessage = 'Job is completed sucessfully';
+
+    @wire(MessageContext)
+    messageContext;
+
+
+    // Handler for message received by component
+    handleMessage(message) {
+        this.recordid = message.recordId;
+        this.metadataname = message.metaDataName;
+        this.inputJSON = message.inputJSON;
+        let ev = new CustomEvent('popUp',{});
+        this.dispatchEvent(ev);  
+        this.initPage(true);
+    }
+
     connectedCallback(){
         if(!this.isdisplaybutton && (this.flownsucessaction === 'Close' || this.flownsucessaction === 'Next') )
         {
@@ -41,6 +64,13 @@ export default class uiJobController extends LightningElement {
         }else
         {
             this.initPage();
+        }
+        if (!this.subscription && this.isUtility) {
+            this.subscription = subscribe(
+                this.messageContext,
+                callUIJob,
+                (message) => this.handleMessage(message)
+            );
         }
         
 

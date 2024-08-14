@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Call_UIJob_Hidden</masterLabel>
+    <isExposed>false</isExposed>
+    <description>Message Channel to pass Count updates</description>
+     <lightningMessageFields>
+        <fieldName>recordIdStr</fieldName>
+        <description>recordId</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+         <fieldName>metaDataName</fieldName>
+        <description>The name of UI Job configuration metadata which want to run UI Job</description>
+     </lightningMessageFields>
+     <lightningMessageFields>
+        <fieldName>inputJSON</fieldName>
+       <description>JSON message for other inputs</description>
+    </lightningMessageFields>
+</LightningMessageChannel>
