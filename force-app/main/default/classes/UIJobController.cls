@@ -196,7 +196,7 @@ public with sharing class UIJobController {
                                 FROM UI_Task_Configuration__mdt 
                                 Where UI_Job__r.DeveloperName =:metaDataNameStr
                                 And Parellel_Job__c  != null
-                                With SYSTEM_MODE])
+                                With USER_MODE])
         {
             pallelJobIdList.add(subjob.Parellel_Job__c);
         }
@@ -205,7 +205,7 @@ public with sharing class UIJobController {
                     FROM UI_Tasks__r) 
                 FROM UI_Job_Configuration__mdt 
                 WHERE Id in  :pallelJobIdList
-                With SYSTEM_MODE])
+                With USER_MODE])
         {
             List<UI_Task_Configuration__mdt> subtasks= new List<UI_Task_Configuration__mdt>();
             for(UI_Task_Configuration__mdt subtask : palljab.UI_Tasks__r)
@@ -284,7 +284,7 @@ public with sharing class UIJobController {
         {
             if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() )
             {
-                Database.Upsert(new UI_Job_Status__c(Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+                Database.Upsert(new UI_Job_Status__c(Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.USER_MODE);
             }
         }
         //delete([Select id from UI_Job_Status__c where Request_Id__c=:recordIdStr]);
@@ -313,7 +313,7 @@ public with sharing class UIJobController {
 
             if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable() )
             {
-                Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=inProgStatus,Error_Message__c=errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+                Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=inProgStatus,Error_Message__c=errorMessage),UI_Job_Status__c.Request_Id__c,true,AccessLevel.USER_MODE);
             }
         }
     }
@@ -355,7 +355,7 @@ public with sharing class UIJobController {
         {
             if(Schema.sObjectType.UI_Job_Status__c.isCreateable() && Schema.sObjectType.UI_Job_Status__c.isUpdateable())
             {
-                Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =ErrorMessage), UI_Job_Status__c.Request_Id__c,true,AccessLevel.SYSTEM_MODE);
+                Database.Upsert(new UI_Job_Status__c(Task_Configuration_Id__c=taskid,Request_Id__c=recordIdStr,Status__c=status,Error_Message__c =ErrorMessage), UI_Job_Status__c.Request_Id__c,true,AccessLevel.USER_MODE);
             }
         }
     }
@@ -387,7 +387,7 @@ public with sharing class UIJobController {
             List<AsyncApexJob> jobInfoList = [SELECT Status,ExtendedStatus FROM AsyncApexJob 
             WHERE Id=:jobId 
             And JobType = :jobType
-            with SYSTEM_MODE];
+            with USER_MODE];
             if(!jobInfoList.isEmpty())
             {
                 jobInfo = jobInfoList[0];
